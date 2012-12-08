@@ -12,10 +12,9 @@ Usage: import_data.py [HOST] [PORT]
 def import_files(url):
     for filename in glob('*.txt'):
         with open(filename) as f:
-            request = urllib2.Request(
+            response = urllib2.urlopen(
                     url='http://%s/file' % url,
                     data=urllib.urlencode({'file': f.read()}))
-            response = urllib2.urlopen(request)
             print response.read()
             response.close()
 
