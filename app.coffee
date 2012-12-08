@@ -31,18 +31,28 @@ require('zappajs') host, port, ->
     console.log data
 
     dataLines = data.split '\n'
+    getVal = (line) ->
+      line.split(',')[2]
     measurements = []
-    for i in [1..dataLines.length-1] when dataLines[i] isnt ''
-        dataLineTriple = dataLines[i].split ','
+    for i in [7..dataLines.length-1] when dataLines[i] isnt ''
+        l = dataLines[i].split ','
         measurement =
-            time:      dataLineTriple[0]
-            parameter: dataLineTriple[1]
-            value:     dataLineTriple[2]
+            time:      l[0]
+            parameter: l[1]
+            value:     l[2]
         measurements.push measurement
 
-    console.log measurements
-    # Add patient data
-    @response.json measurements
+    Patient.create
+      id: getVal dataLines[1]
+      age: getVal dataLines[2]
+      gender: getVal dataLines[3]
+      height: getVal dataLines[4]
+      icuType: getVal dataLines[5]
+      weight: getVal dataLines[6]
+      measurements: measurements
+      , (err, patient) =>
+        console.log "Error while saving patient", patient if err?
+        @response.json patient unless err?
 
   @get '/': ->
     @render 'form.jade'
