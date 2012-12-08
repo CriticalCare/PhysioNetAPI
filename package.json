@@ -1,0 +1,41 @@
+{
+  "name":                     "fileupload",
+  "private":                  true,
+  "version":                  "0.0.1",
+  "description":              "undefined",
+  "homepage":                 "undefined",
+  "author":                   "undefined <undefined>",
+  "keywords": [
+    "node"
+  ],
+  "maintainers": [{
+    "name":                   "undefined",
+    "email":                  "undefined"
+  }],
+  "contributors": [
+  ],
+  "licenses": [
+    {
+      "type":                 "BSD 3-Clause",
+      "url":                  "http://opensource.org/licenses/bsd-3-clause"
+    }
+  ],
+  "bugs": {
+    "url":                    "undefined"
+  },
+  "repository": {
+    "type":                   "git",
+    "url":                    "undefined"
+  },
+  "engines": {
+    "node":                   ">= 0.8.x",
+    "coffee":                 ">= 1.3.x",
+    "jade":                   ">= 0.27",
+    "npm":                    "1"
+  },
+  "dependencies": {
+    "zappajs":                ">= 0.4",
+    "jade":                   ">= 0.27",
+    "coffee-script":          ">= 1.3"
+  }
+}
