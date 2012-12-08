@@ -26,11 +26,26 @@ require('zappajs') host, port, ->
       @use 'errorHandler'
 
   @helper parse_file: (err, data) ->
+    return console.log err if err
+
     console.log data
+
+    dataLines = data.split '\n'
+    measurements = []
+    for i in [1..dataLines.length-1] when dataLines[i] isnt ''
+        dataLineTriple = dataLines[i].split ','
+        measurement =
+            time:      dataLineTriple[0]
+            parameter: dataLineTriple[1]
+            value:     dataLineTriple[2]
+        measurements.push measurement
+
+    console.log measurements
+    # Add patient data
+    @response.json measurements
 
   @get '/': ->
     @render 'form.jade'
 
   @post '/upload': ->
-    fs.readFile file.path, @parse_file for file in @request.files.documents
-    @response.json @request.files
+    fs.readFile @request.files.documents.path, 'utf-8', @parse_file
