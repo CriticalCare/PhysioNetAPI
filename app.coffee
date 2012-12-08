@@ -3,6 +3,7 @@ host = process.env.HOST || "0.0.0.0"
 
 require('zappajs') host, port, ->
   manifest = require './package.json'
+  fs = require 'fs'
   mongoose = require 'mongoose'
 
   models = require('./models')
@@ -24,8 +25,12 @@ require('zappajs') host, port, ->
       mongoose.connect process.env.MONGOHQ_URL || "mongodb://#{host}/#{manifest.name}"
       @use 'errorHandler'
 
+  @helper parse_file: (err, data) ->
+    console.log data
+
   @get '/': ->
     @render 'form.jade'
 
   @post '/upload': ->
+    fs.readFile file.path, @parse_file for file in @request.files.documents
     @response.json @request.files
