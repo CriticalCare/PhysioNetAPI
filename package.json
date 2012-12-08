@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "zappajs":                ">= 0.4",
+    "mongoose":               ">= 3.3",
     "jade":                   ">= 0.27",
     "coffee-script":          ">= 1.3"
   }

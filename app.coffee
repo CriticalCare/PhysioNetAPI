@@ -3,6 +3,7 @@ host = process.env.HOST || "0.0.0.0"
 
 require('zappajs') host, port, ->
   manifest = require './package.json'
+  mongoose = require 'mongoose'
 
   @configure =>
     @use 'cookieParser',
@@ -14,8 +15,10 @@ require('zappajs') host, port, ->
 
   @configure
     development: =>
+      mongoose.connect "mongodb://#{host}/#{manifest.name}-dev"
       @use errorHandler: {dumpExceptions: on, showStack: on}
     production: =>
+      mongoose.connect process.env.MONGOHQ_URL || "mongodb://#{host}/#{manifest.name}"
       @use 'errorHandler'
 
   @get '/': ->
