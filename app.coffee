@@ -26,9 +26,7 @@ require('zappajs') host, port, ->
       @use 'errorHandler'
 
   @helper parse_file: (err, data) ->
-    return console.log err if err
-
-    console.log data
+    @response.write console.log "Error parsing file", data, err if err
 
     dataLines = data.split '\n'
     getVal = (line) ->
@@ -51,7 +49,7 @@ require('zappajs') host, port, ->
       weight: getVal dataLines[6]
       measurements: measurements
       , (err, patient) =>
-        console.log "Error while saving patient", patient if err?
+        @response.write console.log "Error while saving patient", patient, err if err?
         @response.json patient unless err?
 
   @get '/': ->
@@ -59,7 +57,7 @@ require('zappajs') host, port, ->
 
   @get '/patient/:id': ->
     Patient.find {id: @params.id}, (err, docs) =>
-      console.log "Error retrieving patient with id #{@params.id}:", err if err?
+      @response.write console.log "Error retrieving patient with id #{@params.id}:", err if err?
       @response.json docs unless err?
 
   @post '/file': ->
