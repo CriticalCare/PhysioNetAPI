@@ -57,5 +57,8 @@ require('zappajs') host, port, ->
   @get '/': ->
     @render 'form.jade'
 
+  @post '/file': ->
+    @parse_file null, @body.file
+
   @post '/upload': ->
     fs.readFile @request.files.documents.path, 'utf-8', @parse_file
