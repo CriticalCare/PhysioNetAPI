@@ -3,10 +3,10 @@ mongoose = require 'mongoose'
 PatientSchema = new mongoose.Schema
   id: Number
   age: Number
-  gender: String
-  height: String
+  gender: Number
+  height: Number
   icuType: Number
-  weight: String
+  weight: Number
   measurements: [{
     time: String
     parameter: String
