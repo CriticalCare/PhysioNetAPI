@@ -57,6 +57,11 @@ require('zappajs') host, port, ->
   @get '/': ->
     @render 'form.jade'
 
+  @get '/patient/:id': ->
+    Patient.find {id: @params.id}, (err, docs) =>
+      console.log "Error retrieving patient with id #{@params.id}:", err if err?
+      @response.json docs unless err?
+
   @post '/file': ->
     @parse_file null, @body.file
 
