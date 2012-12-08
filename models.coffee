@@ -12,5 +12,10 @@ PatientSchema = new mongoose.Schema
     parameter: String
     value: Number
   }]
+  sapsI: Number
+  sofa: Number
+  lengthOfStay: Number
+  survival: Number
+  inHospitalDeath: Number
 
 module.exports.patient = mongoose.model 'Patient', PatientSchema
