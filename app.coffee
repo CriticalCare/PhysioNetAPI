@@ -5,6 +5,9 @@ require('zappajs') host, port, ->
   manifest = require './package.json'
   mongoose = require 'mongoose'
 
+  models = require('./models')
+  Patient = models.patient
+
   @configure =>
     @use 'cookieParser',
       'bodyParser',
