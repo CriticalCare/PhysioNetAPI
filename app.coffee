@@ -148,8 +148,8 @@ require('zappajs') host, port, ->
           if ( (minmax[0] != null && val < minmax[0]) || (minmax[1] != null && val > minmax[1]) )
               prob += probs[param]
       if prob > 1.0
-          return 1
-      return 0
+          return { state: state, flag: 1 }
+      return { state: state, flag: 1 }
 
   @get '/': ->
     @render 'form.jade'
