@@ -5,8 +5,6 @@ from glob import glob
 
 """
 Import PhysioNet challenge data into CriticalCare
-
-Usage: import_data.py [HOST] [PORT]
 """
 
 def import_files(url):
@@ -18,11 +16,26 @@ def import_files(url):
             print response.read()
             response.close()
 
+def import_outcomes(url, filename):
+    with open(filename) as f:
+        response = urllib2.urlopen(
+                url='http://%s/file' % url,
+                data=urllib.urlencode({'outcomes': f.read()}))
+        print response.read()
+        response.close()
+
 if __name__ == '__main__':
-    import sys
-    url = 'localhost:3000'
-    if len(sys.argv) > 1:
-        url = sys.argv[1]
-    if len(sys.argv) > 2:
-        url += ":%s" % sys.argv[2]
-    import_files(url)
+    from argparse import ArgumentParser
+    parser = ArgumentParser(description=__doc__, add_help=True)
+    parser.add_argument('--host', type=str, default='localhost',
+            help='hostname, defaults to localhost')
+    parser.add_argument('--port', type=str, default='3000',
+            help='port, defaults to 3000')
+    parser.add_argument('--outcomes', type=str,
+            help='Import an outcomes file (if not given all .txt files in the current directory will be imported as patient records)')
+    args = parser.parse_args()
+    url = args.host+':'+args.port if args.port else args.host
+    if args.outcomes:
+        import_outcomes(url, args.outcomes)
+    else:
+        import_files(url)
