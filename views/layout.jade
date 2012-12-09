@@ -1,0 +1,23 @@
+!!!
+html
+  head 
+    title #{title}
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css') 
+
+  body
+    div.navbar.navbar-fixed-top
+      div.navbar-inner
+        div.container
+          a(href='/').brand #{brand}
+          ul.nav
+            - var obj = { 'home':'Home', 'source':'Source', 'upload':'Upload a file' }
+              - each val, key in obj
+                - if (id == key)
+                  li.active
+                    a(href='#{key}') #{val}
+                - else            
+                  li
+                    a(href='#{key}') #{val}
+
+    div.container
+      block content

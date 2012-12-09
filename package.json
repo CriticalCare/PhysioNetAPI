@@ -3,6 +3,7 @@
   "version":                  "0.0.1",
   "description":              "Query patient data from the PhysioNet Computing in Cardiology Challenge 2012",
   "homepage":                 "https://criticalcare.heroku.com",
+  "source":                   "https://github.com/CriticalCare/PhysioNetAPI",
   "author":                   "Florian Rathgeber <florian.rathgeber@gmail.com>",
   "keywords": [
     "node"

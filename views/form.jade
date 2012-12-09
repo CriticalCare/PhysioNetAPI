@@ -1,3 +1,6 @@
-form(action="/upload", method="post", enctype="multipart/form-data")
-  input(type="file", multiple="multiple", name="documents")
-  input(type="submit")
+extends layout
+
+block content
+  form(action="/upload", method="post", enctype="multipart/form-data")
+    input(type="file", multiple="multiple", name="documents")
+    input(type="submit")

@@ -16,6 +16,7 @@ require('zappajs') host, port, ->
       'session': secret: 'shhhhhhhhhhhhhh!',
       @app.router,
       'static'
+    @set 'view engine', 'jade'
 
   @configure
     development: =>
@@ -154,12 +155,18 @@ require('zappajs') host, port, ->
       return { state: state, flag: 0 }
 
   @get '/': ->
+    @response.redirect '/home'
+
+  @get '/home': ->
     md = require('node-markdown').Markdown
     fs.readFile 'README.md', 'utf-8', (err, data) =>
-      @render 'markdown.jade', {md: md, markdownContent: data}
+      @render 'markdown.jade', {md: md, markdownContent: data, title: manifest.name, id: 'home', brand: manifest.name}
+
+  @get '/source': ->
+    @response.redirect manifest.source
 
   @get '/upload': ->
-    @render 'form.jade'
+    @render 'form.jade', {title: manifest.name, id: 'upload', brand: manifest.name}
 
   @get '/patients': ->
     Patient.find {}, {id:true, _id:false}, (err, patients) =>
