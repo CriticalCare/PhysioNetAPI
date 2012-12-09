@@ -1,18 +1,11 @@
 {
-  "name":                     "fileupload",
-  "private":                  true,
+  "name":                     "PhysioNetAPI",
   "version":                  "0.0.1",
-  "description":              "undefined",
-  "homepage":                 "undefined",
-  "author":                   "undefined <undefined>",
+  "description":              "Query patient data from the PhysioNet Computing in Cardiology Challenge 2012",
+  "homepage":                 "https://criticalcare.heroku.com",
+  "author":                   "Florian Rathgeber <florian.rathgeber@gmail.com>",
   "keywords": [
     "node"
-  ],
-  "maintainers": [{
-    "name":                   "undefined",
-    "email":                  "undefined"
-  }],
-  "contributors": [
   ],
   "licenses": [
     {
@@ -21,11 +14,11 @@
     }
   ],
   "bugs": {
-    "url":                    "undefined"
+    "url":                    "https://github.com/CriticalCare/PhysioNetAPI/issues"
   },
   "repository": {
     "type":                   "git",
-    "url":                    "undefined"
+    "url":                    "git://github.com/CriticalCare/PhysioNetAPI.git"
   },
   "engines": {
     "node":                   ">= 0.8.x",
