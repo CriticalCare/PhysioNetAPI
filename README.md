@@ -1,5 +1,5 @@
-Query patient data from the PhysioNet Computing in Cardiology Challenge 2012
-through a REST API
+Query patient data from the [PhysioNet Computing in Cardiology Challenge
+2012](http://www.physionet.org/challenge/2012/) through a REST API
 
 * `/patients` returns an array of all patient ids
 * `/patients/:from/:to` returns an array of patient records with ids between
