@@ -29,8 +29,7 @@ if __name__ == '__main__':
     parser = ArgumentParser(description=__doc__, add_help=True)
     parser.add_argument('--host', type=str, default='localhost',
             help='hostname, defaults to localhost')
-    parser.add_argument('--port', type=str, default='3000',
-            help='port, defaults to 3000')
+    parser.add_argument('--port', type=str, help='port')
     parser.add_argument('--outcomes', type=str,
             help='Import an outcomes file (if not given all .txt files in the current directory will be imported as patient records)')
     args = parser.parse_args()
