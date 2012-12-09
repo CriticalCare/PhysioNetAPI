@@ -177,9 +177,12 @@ require('zappajs') host, port, ->
 
   @get '/patient/:id/flag/:time': ->
     Patient.findOne {id: @params.id}, (err, patient) =>
-      @response.write console.log "Error retrieving patient with id #{@params.id}:", err if err?
-      @response.header "Access-Control-Allow-Origin", "*"
-      @response.json @get_flag patient, @params.time unless err?
+      if err?
+        @response.write console.log "Error retrieving patient with id #{@params.id}:", err
+      else
+        @response.header "Access-Control-Allow-Origin", "*"
+        @response.json @get_flag patient, @params.time if patient?
+        @response.json {} unless patient?
 
   @post '/file': ->
     if @body.file
