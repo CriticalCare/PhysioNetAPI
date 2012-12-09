@@ -78,6 +78,7 @@ require('zappajs') host, port, ->
   @get '/patients/:from/:to': ->
     Patient.find {id: {$gte: @params.from, $lte: @params.to}}, (err, patients) =>
         @response.write console.log "Error retrieving patient with ids between #{@params.from} and #{@params.from}:", err if err?
+        @response.header "Access-Control-Allow-Origin", "*"
         @response.json patients unless err?
 
   @get '/patients/skip/:skip/limit/:limit': ->
@@ -86,11 +87,13 @@ require('zappajs') host, port, ->
       .limit(@params.limit)
       .exec (err, patients) =>
         @response.write console.log "Error retrieving #{@params.limit} patient records skipping #{@params.skip}:", err if err?
+        @response.header "Access-Control-Allow-Origin", "*"
         @response.json patients unless err?
 
   @get '/patient/:id': ->
     Patient.findOne {id: @params.id}, (err, patient) =>
       @response.write console.log "Error retrieving patient with id #{@params.id}:", err if err?
+      @response.header "Access-Control-Allow-Origin", "*"
       @response.json patient unless err?
 
   @post '/file': ->
