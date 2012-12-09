@@ -154,6 +154,11 @@ require('zappajs') host, port, ->
       return { state: state, flag: 0 }
 
   @get '/': ->
+    md = require('node-markdown').Markdown
+    fs.readFile 'README.md', 'utf-8', (err, data) =>
+      @render 'markdown.jade', {md: md, markdownContent: data}
+
+  @get '/upload': ->
     @render 'form.jade'
 
   @get '/patients': ->
