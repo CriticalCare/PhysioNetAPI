@@ -154,6 +154,12 @@ require('zappajs') host, port, ->
   @get '/': ->
     @render 'form.jade'
 
+  @get '/patients': ->
+    Patient.find {}, {id:true, _id:false}, (err, patients) =>
+        @response.write console.log "Error retrieving patient ids:", err if err?
+        @response.header "Access-Control-Allow-Origin", "*"
+        @response.json patients unless err?
+
   @get '/patients/:from/:to': ->
     Patient.find {id: {$gte: @params.from, $lte: @params.to}}, (err, patients) =>
         @response.write console.log "Error retrieving patient with ids between #{@params.from} and #{@params.from}:", err if err?
